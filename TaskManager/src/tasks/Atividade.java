@@ -8,6 +8,6 @@ import java.io.File;
  */
 
 public interface Atividade {
-    public void adicionarAtividade(String nome, String categoria, String observacoes, File selecionado);
+    public void adicionarAtividade(NovaTarefa tarefa);
     public void removerAtividade();
 }

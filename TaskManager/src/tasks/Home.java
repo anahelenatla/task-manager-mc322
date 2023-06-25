@@ -16,9 +16,12 @@ public class Home extends javax.swing.JFrame {
     
     private File selected;
     public DefaultTableModel modelo;
+    private ListaDeTarefas lista;
+    private int contador = lista.getQuantidade();
     public Home() {
         initComponents();
         init();
+        criaLista();
     }
     
     public JTable getTable(){
@@ -60,6 +63,10 @@ public class Home extends javax.swing.JFrame {
            //adicionar um tratamento de exceção aqui, pro upload de arquivo não ser obrigatório
         }
         return true;
+    }
+    
+    public void criaLista(){
+        ListaDeTarefas lista = new ListaDeTarefas();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -487,15 +494,17 @@ public class Home extends javax.swing.JFrame {
             String nome = jTextFieldNome.getText();
             String obs = jTextFieldObs.getText();
             String categoria = jComboBoxAdd.getSelectedItem().toString();
-            
+            NovaTarefa tarefaEspecifica = new NovaTarefa(nome, categoria, obs, selected);
             Tarefa tarefa = new Tarefa(modelo, this);
-            tarefa.adicionarAtividade(nome, categoria, obs, selected);
+            tarefa.adicionarAtividade(tarefaEspecifica);
+            lista.adicionarAtividade(tarefaEspecifica);
         }
     }//GEN-LAST:event_jToggleButtonAddNewActionPerformed
 
     private void jToggleButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonExcluirActionPerformed
         Tarefa tarefa = new Tarefa(modelo, this);
         tarefa.removerAtividade();
+        lista.removerAtividade();
     }//GEN-LAST:event_jToggleButtonExcluirActionPerformed
 
     private void jToggleButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSairActionPerformed
@@ -507,6 +516,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         clear();
+        
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     public static void main(String args[]) {

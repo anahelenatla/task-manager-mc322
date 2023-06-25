@@ -22,11 +22,11 @@ public class Tarefa implements Atividade {
     }
     
     @Override
-    public void adicionarAtividade(String nome, String categoria, String observacoes, File arquivo){
-        this.nome = nome;
-        this.categoria = categoria;
-        this.observacoes = observacoes;
-        this.arquivo = arquivo;
+    public void adicionarAtividade(NovaTarefa tarefa){
+        this.nome = tarefa.getNome();
+        this.categoria = tarefa.getCategoria();
+        this.observacoes = tarefa.getObservacoes();
+        this.arquivo = tarefa.getArquivo();
         
         //adiciona a nova linha à tabela
         Object[] novaLinha = {this.categoria, this.nome, this.observacoes, this.arquivo.getPath()};
