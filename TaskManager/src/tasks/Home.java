@@ -16,12 +16,15 @@ public class Home extends javax.swing.JFrame {
     
     private File selected;
     public DefaultTableModel modelo;
-    private ListaDeTarefas lista;
-    private int contador = lista.getQuantidade();
+    private ListaTrabalho listaTrabalho;
+    private ListaFaculdade listaFaculdade;
+    private ListaPessoal listaPessoal;
+    private ListaSaude listaSaude;
+    //private int contador = lista.getQuantidade();
     public Home() {
         initComponents();
         init();
-        criaLista();
+        criaListas();
     }
     
     public JTable getTable(){
@@ -65,8 +68,15 @@ public class Home extends javax.swing.JFrame {
         return true;
     }
     
-    private void criaLista(){
-        ListaDeTarefas lista = new ListaDeTarefas();
+    private void criaListas(){
+        ListaTrabalho listaTrabalho = new ListaTrabalho();
+            listaTrabalho.setQuantidade(0);
+        ListaFaculdade listaFaculdade = new ListaFaculdade();
+            listaFaculdade.setQuantidade(0);
+        ListaPessoal listaPessoal = new ListaPessoal();
+            listaPessoal.setQuantidade(0);
+        ListaSaude listaSaude = new ListaSaude();
+            listaSaude.setQuantidade(0);
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -508,14 +518,32 @@ public class Home extends javax.swing.JFrame {
             NovaTarefa tarefaEspecifica = new NovaTarefa(nome, categoria, obs, selected);
             Tarefa tarefa = new Tarefa(modelo, this);
             tarefa.adicionarAtividade(tarefaEspecifica);
-            lista.adicionarAtividade(tarefaEspecifica);
+            if(tarefaEspecifica.getCategoria().equals("Trabalho")){
+                this.listaTrabalho.adicionarAtividade(tarefaEspecifica);
+            } else if(tarefaEspecifica.getCategoria().equals("Saúde")){
+                this.listaSaude.adicionarAtividade(tarefaEspecifica);
+            } else if(tarefaEspecifica.getCategoria().equals("Faculdade")){
+                this.listaFaculdade.adicionarAtividade(tarefaEspecifica);
+            } else {
+                this.listaPessoal.adicionarAtividade(tarefaEspecifica);
+            }
+            
         }
     }//GEN-LAST:event_jToggleButtonAddNewActionPerformed
 
     private void jToggleButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonExcluirActionPerformed
         Tarefa tarefa = new Tarefa(modelo, this);
-        tarefa.removerAtividade();
-        lista.removerAtividade();
+        tarefa.removerAtividade();        
+        if(tarefa.removerAtividade().equals("Trabalho")){
+                this.listaTrabalho.removerAtividade();
+            } else if(tarefa.removerAtividade().equals("Saúde")){
+                this.listaSaude.removerAtividade();
+            } else if(tarefa.removerAtividade().equals("Faculdade")){
+                this.listaFaculdade.removerAtividade();
+            } else {
+                this.listaPessoal.removerAtividade();
+            }
+        
     }//GEN-LAST:event_jToggleButtonExcluirActionPerformed
 
     private void jToggleButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSairActionPerformed

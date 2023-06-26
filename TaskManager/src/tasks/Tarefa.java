@@ -36,10 +36,12 @@ public class Tarefa implements Atividade {
     }
     
     @Override
-    public void removerAtividade(){
+    public String removerAtividade(){
         int indexLinha = home.getTable().getSelectedRow();
+                String categoria = home.getTable().getValueAt(indexLinha, 0).toString();                
         if (indexLinha != -1){
             modelo.removeRow(indexLinha);
         }
+        return categoria;
     }
 }

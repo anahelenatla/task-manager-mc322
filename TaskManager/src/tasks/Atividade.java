@@ -9,5 +9,5 @@ import java.io.File;
 
 public interface Atividade {
     public void adicionarAtividade(NovaTarefa tarefa);
-    public void removerAtividade();
+    public String removerAtividade();
 }

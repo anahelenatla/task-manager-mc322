@@ -10,31 +10,32 @@ import java.util.ArrayList;
  *
  * @author ana
  */
-public abstract class ListaDeTarefas {
+public class ListaSaude extends ListaDeTarefas {
     private ArrayList<TarefaEspecifica> tarefas;
     private int quantidade;
     
-    public ListaDeTarefas(){
+    public ListaSaude(){
         this.tarefas = new ArrayList<>();
         this.quantidade = quantidade;
     }
     
-
+    @Override
     public void adicionarAtividade(NovaTarefa tarefa){
         tarefas.add(tarefa);
         quantidade++;
     }
 
+    @Override
     public void removerAtividade(){
         quantidade--;
     }
     
+    @Override
     public int getQuantidade(){
         return quantidade;
     }
-    
-    
-    public void setQuantidade(int quantidade){
+    @Override
+     public void setQuantidade(int quantidade){
         this.quantidade = quantidade;
     }
     
